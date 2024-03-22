@@ -8,17 +8,17 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5124"
+      "applicationUrl": "http://localhost:62007"
     },
     "https": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7139;http://localhost:5124"
+        "commandName": "Project",
+        "launchBrowser": true,
+        "launchUrl": "swagger",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "dotnetRunMessages": true,
+        "applicationUrl": "https://localhost:62007;http://localhost:62006"
     },
     "IIS Express": {
       "commandName": "IISExpress",

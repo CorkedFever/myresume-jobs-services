@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Swagger\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Corkedfever.Jobs.Business\Corkedfever.Jobs.Business.csproj" />
     <ProjectReference Include="..\Corkedfever.Jobs.Data\Corkedfever.Jobs.Data.csproj" />
   </ItemGroup>

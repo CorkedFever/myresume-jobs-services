@@ -1,4 +1,4 @@
-@Corkedfever.Jobs.Service_HostAddress = http://localhost:5124
+@Corkedfever.Jobs.Service_HostAddress = http://localhost:62007
 
 GET {{Corkedfever.Jobs.Service_HostAddress}}/weatherforecast/
 Accept: application/json
