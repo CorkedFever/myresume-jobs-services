@@ -26,20 +26,20 @@ namespace Corkedfever.Jobs.Business
 
         public JobModel GetJobById(int id)
         {
-            throw new NotImplementedException();
+            return _jobRepository.GetJobById(id);
         }
 
         public List<JobModel> GetJobs()
         {
-            throw new NotImplementedException();
+            return _jobRepository.GetJobs();
         }
         public void CreateJob(JobModel job)
         {
-            throw new NotImplementedException();
+            _jobRepository.CreateJob(job);
         }
         public void UpdateJob(int id, JobModel job)
         {
-            throw new NotImplementedException();
+            _jobRepository.UpdateJob(id, job);
         }
     }
 }

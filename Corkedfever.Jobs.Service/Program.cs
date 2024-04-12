@@ -1,6 +1,7 @@
 using Corkedfever.Jobs.Business;
 using Corkedfever.Jobs.Data;
-
+using Corkedfever.Common.Data;
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IJobService, JobService>();
 builder.Services.AddSingleton<IJobRepository, JobRepository>();
+builder.Services.AddDbContext<CorkedFeverDataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),b=>b.MigrationsAssembly("Corkedfever.Jobs.Service"));
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
