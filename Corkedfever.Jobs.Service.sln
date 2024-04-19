@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{72550B7B-A5BD-4C4B-89EE-85D70E54A11E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{5E2545E9-64E6-4798-9408-0400A54A65FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{2F9D7197-41F1-4510-8F92-F8FB723B8EDA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corkedfever.Jobs.Service", "Corkedfever.Jobs.Service\Corkedfever.Jobs.Service.csproj", "{A5AAF736-42C3-49E3-9FE0-649786C08D32}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corkedfever.Jobs.Business", "Corkedfever.Jobs.Business\Corkedfever.Jobs.Business.csproj", "{D7F6C65A-B1C8-4882-8EF3-D511512F608C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corkedfever.Jobs.Data", "Corkedfever.Jobs.Data\Corkedfever.Jobs.Data.csproj", "{E1BAAD02-441B-41FE-ADC8-4E766E4BEED4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corkedfever.Client.Jobs", "Corkedfever.Client.Jobs\Corkedfever.Client.Jobs.csproj", "{C0438BB0-9D9F-4BE4-B8EC-D4B291D877C1}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{08D54DE8-CFCE-49FA-8035-7AF05D80FD2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5AAF736-42C3-49E3-9FE0-649786C08D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5AAF736-42C3-49E3-9FE0-649786C08D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5AAF736-42C3-49E3-9FE0-649786C08D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5AAF736-42C3-49E3-9FE0-649786C08D32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F6C65A-B1C8-4882-8EF3-D511512F608C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F6C65A-B1C8-4882-8EF3-D511512F608C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F6C65A-B1C8-4882-8EF3-D511512F608C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F6C65A-B1C8-4882-8EF3-D511512F608C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1BAAD02-441B-41FE-ADC8-4E766E4BEED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1BAAD02-441B-41FE-ADC8-4E766E4BEED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1BAAD02-441B-41FE-ADC8-4E766E4BEED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1BAAD02-441B-41FE-ADC8-4E766E4BEED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0438BB0-9D9F-4BE4-B8EC-D4B291D877C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0438BB0-9D9F-4BE4-B8EC-D4B291D877C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0438BB0-9D9F-4BE4-B8EC-D4B291D877C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0438BB0-9D9F-4BE4-B8EC-D4B291D877C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08D54DE8-CFCE-49FA-8035-7AF05D80FD2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08D54DE8-CFCE-49FA-8035-7AF05D80FD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08D54DE8-CFCE-49FA-8035-7AF05D80FD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08D54DE8-CFCE-49FA-8035-7AF05D80FD2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A5AAF736-42C3-49E3-9FE0-649786C08D32} = {72550B7B-A5BD-4C4B-89EE-85D70E54A11E}
+		{D7F6C65A-B1C8-4882-8EF3-D511512F608C} = {72550B7B-A5BD-4C4B-89EE-85D70E54A11E}
+		{E1BAAD02-441B-41FE-ADC8-4E766E4BEED4} = {72550B7B-A5BD-4C4B-89EE-85D70E54A11E}
+		{C0438BB0-9D9F-4BE4-B8EC-D4B291D877C1} = {2F9D7197-41F1-4510-8F92-F8FB723B8EDA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4501A86C-C49F-4977-A573-7F478511EEF6}
+	EndGlobalSection
+EndGlobal

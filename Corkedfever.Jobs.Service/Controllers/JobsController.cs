@@ -44,7 +44,7 @@ namespace Corkedfever.Jobs.Service.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("CreateJob")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult CreateJob([FromBody] JobModel job)
         {
@@ -75,6 +75,21 @@ namespace Corkedfever.Jobs.Service.Controllers
             }
 
         }
+        [HttpPost("CreateJobType")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public IActionResult CreateJobType([FromBody] JobTypeModel jobType)
+        {
+            try
+            {
+                _jobService.CreateJobType(jobType);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
 
+        }
+        
     }
 }

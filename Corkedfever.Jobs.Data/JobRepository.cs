@@ -12,6 +12,7 @@ namespace Corkedfever.Jobs.Data
     public interface IJobRepository
     {
         void CreateJob(JobModel job);
+        void CreateJobType(JobTypeModel jobType);
         JobModel GetJobById(int id);
         List<JobModel> GetJobs();
         void UpdateJob(int id, JobModel job);
@@ -29,16 +30,36 @@ namespace Corkedfever.Jobs.Data
         {
             using (var dbContext = _context.CreateDbContext())
             {
+                var existingJobType = dbContext.JobType.Where(jt => jt.JobTypeName == jobModel.JobType).FirstOrDefault();
+                if (existingJobType == null)
+                {
+                    return;
+                }
                 var newJob = new Job
                 {
                     JobTitle = jobModel.JobTitle,
                     JobDescription = jobModel.JobDescription,
                     JobLocation = jobModel.JobLocation,
                     StartDate = jobModel.StartDate,
+                    JobType = existingJobType,
                     EndDate = jobModel.EndDate,
                     CreatedDate = DateTime.Now
                 };
                 dbContext.Job.Add(newJob);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void CreateJobType(JobTypeModel jobType)
+        {
+            using (var dbContext = _context.CreateDbContext())
+            {
+                var newJobType = new JobType
+                {
+                    JobTypeName = jobType.JobTypeName,
+                    JobTypeDescription = jobType.JobTypeDescription
+                };
+                dbContext.JobType.Add(newJobType);
                 dbContext.SaveChanges();
             }
         }
@@ -67,11 +88,12 @@ namespace Corkedfever.Jobs.Data
         {
             using (var dbContext = _context.CreateDbContext())
             {
-                return dbContext.Job.Select(j => new JobModel
+                return dbContext.Job.Include(j=>j.JobType).Select(j => new JobModel
                 {
                     JobTitle = j.JobTitle,
                     JobDescription = j.JobDescription,
                     JobLocation = j.JobLocation,
+                    JobType = j.JobType.JobTypeName,
                     StartDate = j.StartDate,
                     EndDate = j.EndDate
                 }).ToList();

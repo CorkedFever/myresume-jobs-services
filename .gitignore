@@ -14,3 +14,8 @@
 /Corkedfever.Client.Jobs/obj
 /Corkedfever.Jobs.Service/.vs/ProjectEvaluation
 /Corkedfever.Jobs.Service/Migrations
+/Corkedfever.Client.Jobs/bin/Release/net6.0
+/Corkedfever.Jobs.Business/bin/Release/net8.0
+/Corkedfever.Jobs.Data/bin/Release/net8.0
+/Corkedfever.Jobs.Service/bin/Release/net8.0
+/obj/Docker

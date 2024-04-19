@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  corkedfever.jobs.service:
+    image: ${DOCKER_REGISTRY-}corkedfeverjobsservice
+    build:
+      context: Corkedfever.Jobs.Service
+      dockerfile: Dockerfile
