@@ -24,6 +24,6 @@ stages:
       displayName: Build an image
       inputs:
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/Corkedfever.Jobs.Service/Dockerfile-linux'
+        dockerfile: '$(Build.SourcesDirectory)/Corkedfever.Jobs.Service/Dockerfile'
         tags: |
           $(tag)
