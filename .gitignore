@@ -19,3 +19,5 @@
 /Corkedfever.Jobs.Data/bin/Release/net8.0
 /Corkedfever.Jobs.Service/bin/Release/net8.0
 /obj/Docker
+/bin/Debug
+/obj/Debug
