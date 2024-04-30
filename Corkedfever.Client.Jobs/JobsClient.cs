@@ -1,6 +1,6 @@
 ﻿namespace Corkedfever.Client.Jobs
 {
-    public class JobsClient : ClientBase
+    public class JobsClient : JobsClientBase
     {
         public JobsClient(string baseUri) : base(baseUri)
         {
