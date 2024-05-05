@@ -6,3 +6,6 @@ services:
     build:
       context: Corkedfever.Jobs.Service
       dockerfile: Dockerfile
+    ports:
+      -  "26006:8080"
+      -  "26007:8081"

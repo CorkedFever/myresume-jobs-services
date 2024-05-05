@@ -16,8 +16,9 @@ namespace Corkedfever.Jobs.Service.Controllers
             _jobService = jobService;
         }
 
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("GetAll")]
+        [ProducesResponseType(typeof(List<JobModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetJobs()
         {
             try
@@ -30,8 +31,9 @@ namespace Corkedfever.Jobs.Service.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("GetJob/{id}")]
+        [ProducesResponseType(typeof(JobModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetJob(int id)
         {
             try
@@ -46,6 +48,7 @@ namespace Corkedfever.Jobs.Service.Controllers
 
         [HttpPost("CreateJob")]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult CreateJob([FromBody] JobModel job)
         {
             try
@@ -60,8 +63,9 @@ namespace Corkedfever.Jobs.Service.Controllers
 
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("UpdateJob/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult UpdateJob(int id, [FromBody] JobModel job)
         {
             try
@@ -77,6 +81,7 @@ namespace Corkedfever.Jobs.Service.Controllers
         }
         [HttpPost("CreateJobType")]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult CreateJobType([FromBody] JobTypeModel jobType)
         {
             try
