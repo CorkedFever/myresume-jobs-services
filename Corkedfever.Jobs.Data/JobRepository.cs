@@ -12,6 +12,7 @@ namespace Corkedfever.Jobs.Data
     public interface IJobRepository
     {
         void CreateJob(JobModel job);
+        void CreateJobLineItem(JobLineItemModel jobLineItem, int jobId);
         void CreateJobType(JobTypeModel jobType);
         JobModel GetJobById(int id);
         List<JobModel> GetJobs();
@@ -46,6 +47,27 @@ namespace Corkedfever.Jobs.Data
                     CreatedDate = DateTime.Now
                 };
                 dbContext.Job.Add(newJob);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void CreateJobLineItem(JobLineItemModel jobLineItem, int jobId)
+        {
+            using (var dbContext = _context.CreateDbContext())
+            {
+                var existingJob = dbContext.Job.FirstOrDefault(j => j.Id == jobId);
+                if (existingJob == null)
+                {
+                    return;
+                }
+                var newJobLineItem = new JobDescriptionRoleLineItem
+                {
+                    Job = existingJob,
+                    RoleLineItem = jobLineItem.LineItem,
+                    CreatedDate = DateTime.Now
+
+                };
+                dbContext.JobDescriptionRoleLineItem.Add(newJobLineItem);
                 dbContext.SaveChanges();
             }
         }

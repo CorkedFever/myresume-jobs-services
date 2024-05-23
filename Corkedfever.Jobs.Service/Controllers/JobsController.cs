@@ -1,4 +1,5 @@
-﻿using Corkedfever.Jobs.Business;
+﻿using Corkedfever.Common.Data.DBModels;
+using Corkedfever.Jobs.Business;
 using Corkedfever.Jobs.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -95,6 +96,22 @@ namespace Corkedfever.Jobs.Service.Controllers
             }
 
         }
-        
+        [HttpPost("CreateJobLineItem")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult CreateJobLineItem([FromBody] JobLineItemModel jobLineItem, int jobId)
+        {
+            try
+            {
+                _jobService.CreateJobLineItem(jobLineItem, jobId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+        }
+
     }
 }

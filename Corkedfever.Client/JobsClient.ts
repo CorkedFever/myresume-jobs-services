@@ -331,6 +331,106 @@ export class JobsClient {
         }
         return _observableOf<void>(null as any);
     }
+
+    /**
+     * @param jobId (optional) 
+     * @param body (optional) 
+     * @return Created
+     */
+    createJobLineItem(jobId: number | undefined, body: JobLineItemModel | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/jobs/CreateJobLineItem?";
+        if (jobId === null)
+            throw new Error("The parameter 'jobId' cannot be null.");
+        else if (jobId !== undefined)
+            url_ += "jobId=" + encodeURIComponent("" + jobId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateJobLineItem(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateJobLineItem(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processCreateJobLineItem(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 201) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return _observableOf<void>(null as any);
+            }));
+        } else if (status === 404) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result404: any = null;
+            let resultData404 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result404 = ProblemDetails.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<void>(null as any);
+    }
+}
+
+export class JobLineItemModel implements IJobLineItemModel {
+    lineItem?: string | undefined;
+
+    constructor(data?: IJobLineItemModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.lineItem = _data["lineItem"];
+        }
+    }
+
+    static fromJS(data: any): JobLineItemModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new JobLineItemModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["lineItem"] = this.lineItem;
+        return data;
+    }
+}
+
+export interface IJobLineItemModel {
+    lineItem?: string | undefined;
 }
 
 export class JobModel implements IJobModel {
@@ -338,6 +438,7 @@ export class JobModel implements IJobModel {
     jobDescription?: string | undefined;
     jobLocation?: string | undefined;
     jobType?: string | undefined;
+    jobLineItems?: JobLineItemModel[] | undefined;
     startDate?: Date;
     endDate?: Date;
 
@@ -356,6 +457,11 @@ export class JobModel implements IJobModel {
             this.jobDescription = _data["jobDescription"];
             this.jobLocation = _data["jobLocation"];
             this.jobType = _data["jobType"];
+            if (Array.isArray(_data["jobLineItems"])) {
+                this.jobLineItems = [] as any;
+                for (let item of _data["jobLineItems"])
+                    this.jobLineItems!.push(JobLineItemModel.fromJS(item));
+            }
             this.startDate = _data["startDate"] ? new Date(_data["startDate"].toString()) : <any>undefined;
             this.endDate = _data["endDate"] ? new Date(_data["endDate"].toString()) : <any>undefined;
         }
@@ -374,6 +480,11 @@ export class JobModel implements IJobModel {
         data["jobDescription"] = this.jobDescription;
         data["jobLocation"] = this.jobLocation;
         data["jobType"] = this.jobType;
+        if (Array.isArray(this.jobLineItems)) {
+            data["jobLineItems"] = [];
+            for (let item of this.jobLineItems)
+                data["jobLineItems"].push(item.toJSON());
+        }
         data["startDate"] = this.startDate ? this.startDate.toISOString() : <any>undefined;
         data["endDate"] = this.endDate ? this.endDate.toISOString() : <any>undefined;
         return data;
@@ -385,6 +496,7 @@ export interface IJobModel {
     jobDescription?: string | undefined;
     jobLocation?: string | undefined;
     jobType?: string | undefined;
+    jobLineItems?: JobLineItemModel[] | undefined;
     startDate?: Date;
     endDate?: Date;
 }

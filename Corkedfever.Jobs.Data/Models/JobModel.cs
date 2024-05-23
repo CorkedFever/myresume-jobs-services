@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkedfever.Common.Data.DBModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Corkedfever.Jobs.Data.Models
         public string JobDescription { get; set; }
         public string JobLocation { get; set; }
         public string JobType { get; set; }
+        public List<JobLineItemModel> JobLineItems { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }

@@ -12,9 +12,10 @@ namespace Corkedfever.Jobs.Business
         JobModel GetJobById(int id);
         List<JobModel> GetJobs();
 
-        void CreateJob(Jobs.Data.Models.JobModel job);
-        void UpdateJob(int id, Jobs.Data.Models.JobModel job);
+        void CreateJob(JobModel job);
+        void UpdateJob(int id, JobModel job);
         void CreateJobType(JobTypeModel jobType);
+        void CreateJobLineItem(JobLineItemModel jobLineItem, int jobId);
     }
     public class JobService : IJobService
     {
@@ -46,6 +47,11 @@ namespace Corkedfever.Jobs.Business
         public void CreateJobType(JobTypeModel jobType)
         {
             _jobRepository.CreateJobType(jobType);
+        }
+
+        public void CreateJobLineItem(JobLineItemModel jobLineItem, int jobId)
+        {
+            _jobRepository.CreateJobLineItem(jobLineItem, jobId);
         }
     }
 }
